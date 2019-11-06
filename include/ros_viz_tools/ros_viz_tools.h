@@ -7,14 +7,13 @@
 
 #include <ros/ros.h>
 #include <std_msgs/ColorRGBA.h>
-#include <geometry_msgs/Vector3.h>
 #include <visualization_msgs/Marker.h>
 #include <visualization_msgs/MarkerArray.h>
-#include <geometry_msgs/PoseStamped.h>
+#include <geometry_msgs/Pose.h>
 
+#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 #include <tf2/convert.h>
 #include <tf2/LinearMath/Transform.h>
-#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 #include <string>
 
 using visualization_msgs::Marker;
@@ -51,77 +50,75 @@ public:
     RosVizTools(const ros::NodeHandle &nh, const std::string &topic);
 
     void publish();
-    void clearMakerArray();
-    void pushBackMarker(const Marker &marker);
+    void clear();
+    void append(const Marker &marker);
 
-    Marker newMaker(const geometry_msgs::Vector3 &scale,
-                    const geometry_msgs::Pose &pose,
-                    const std::string &ns,
-                    const int32_t &id,
-                    const ColorRGBA &color,
-                    const std::string &frame_id,
-                    const int32_t &type);
+    static Marker newMaker(const geometry_msgs::Vector3 &scale,
+                           const geometry_msgs::Pose &pose,
+                           const std::string &ns,
+                           const int32_t &id,
+                           const ColorRGBA &color,
+                           const std::string &frame_id,
+                           const int32_t &type);
 
-    Marker newCubeList(double scale,
-                       const std::string &ns,
-                       const int32_t &id,
-                       const ColorRGBA &color,
-                       const std::string &frame_id);
+    static Marker newCubeList(double scale,
+                              const std::string &ns,
+                              const int32_t &id,
+                              const ColorRGBA &color,
+                              const std::string &frame_id);
 
-    Marker newSphereList(const double &scale,
-                         const std::string &ns,
-                         const int32_t &id,
-                         const ColorRGBA &color,
-                         const std::string &frame_id);
+    static Marker newSphereList(const double &scale,
+                                const std::string &ns,
+                                const int32_t &id,
+                                const ColorRGBA &color,
+                                const std::string &frame_id);
 
-    Marker newLineStrip(const double &scale,
-                        const std::string &ns,
-                        const int32_t &id,
-                        const ColorRGBA &color,
-                        const std::string &frame_id);
+    static Marker newLineStrip(const double &scale,
+                               const std::string &ns,
+                               const int32_t &id,
+                               const ColorRGBA &color,
+                               const std::string &frame_id);
 
-    Marker newLineList(const double &scale,
-                       const std::string &ns,
-                       const int32_t &id,
-                       const ColorRGBA &color,
-                       const std::string &frame_id);
+    static Marker newLineList(const double &scale,
+                              const std::string &ns,
+                              const int32_t &id,
+                              const ColorRGBA &color,
+                              const std::string &frame_id);
 
-    Marker newCylinder(const geometry_msgs::Vector3 &scale,
-                       const geometry_msgs::Pose &pose,
-                       const std::string &ns,
-                       const int32_t &id,
-                       const ColorRGBA &color,
-                       const std::string &frame_id);
+    static Marker newCylinder(const geometry_msgs::Vector3 &scale,
+                              const geometry_msgs::Pose &pose,
+                              const std::string &ns,
+                              const int32_t &id,
+                              const ColorRGBA &color,
+                              const std::string &frame_id);
 
-    Marker newCube(const double &scale,
-                   const geometry_msgs::Pose &pose,
-                   const std::string &ns,
-                   const int32_t &id,
-                   const ColorRGBA &color,
-                   const std::string &frame_id);
+    static Marker newCube(const double &scale,
+                          const geometry_msgs::Pose &pose,
+                          const std::string &ns,
+                          const int32_t &id,
+                          const ColorRGBA &color,
+                          const std::string &frame_id);
 
-    Marker newText(const double &scale,
-                   const geometry_msgs::Pose &pose,
-                   const std::string &ns,
-                   const int32_t &id,
-                   const ColorRGBA &color,
-                   const std::string &frame_id);
+    static Marker newText(const double &scale,
+                          const geometry_msgs::Pose &pose,
+                          const std::string &ns,
+                          const int32_t &id,
+                          const ColorRGBA &color,
+                          const std::string &frame_id);
 
-    Marker newFrame(const double &width,
-                    const double &length,
-                    const geometry_msgs::Pose &pose,
-                    const std::string &ns,
-                    const int32_t &id,
-                    const std_msgs::ColorRGBA &color,
-                    const std::string &frame_id);
+    static Marker newFrame(const double &width,
+                           const double &length,
+                           const geometry_msgs::Pose &pose,
+                           const std::string &ns,
+                           const int32_t &id,
+                           const std_msgs::ColorRGBA &color,
+                           const std::string &frame_id);
 
     static geometry_msgs::Pose defaultPose();
 
 private:
     ros::NodeHandle nh;
-    ros::NodeHandle private_nh;
     ros::Publisher rviz_pub;
-    std::string frame_id;
     std::string topic;
     MarkerArray rviz_marker_array;
 };

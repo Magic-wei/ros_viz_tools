@@ -13,11 +13,11 @@ void RosVizTools::publish(){
     rviz_pub.publish(this->rviz_marker_array);
 }
 
-void RosVizTools::clearMakerArray(){
+void RosVizTools::clear(){
     this->rviz_marker_array.markers.clear();
 }
 
-void RosVizTools::pushBackMarker(const Marker &marker) {
+void RosVizTools::append(const Marker &marker) {
     this->rviz_marker_array.markers.push_back(marker);
 }
 
