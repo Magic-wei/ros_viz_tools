@@ -79,3 +79,7 @@ markers.clear();
 ```
 
 You can see [demo_node.cpp](./src/demo_node.cpp) for better understanding of the usage for each marker type.
+
+## License
+
+This repository licensed under the [MIT License](./LICENSE).

@@ -1,6 +1,4 @@
-//
-// Created by wangwei on 2019/11/4.
-//
+// Copyright (C) 2019 Wei Wang (wei.wang.bit@outlook.com)
 
 #include "ros_viz_tools/ros_viz_tools.h"
 
