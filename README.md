@@ -30,6 +30,26 @@ Currently support:
 
 ## Usage
 
+Set catkin package dependencies in your `CMakeLists.txt` and `package.xml`,
+
+```cmake
+# CMakeLists.txt
+find_package(catkin REQUIRED COMPONENTS
+  ...
+  ros_viz_tools
+)
+```
+
+```xml
+<!-- package.xml -->
+<?xml version="1.0"?>
+<package format="2">
+  ...  
+  <depend>ros_viz_tools</depend>
+  ...
+</package>
+```
+
 Include the header file in your codes,
 
 ```c++
