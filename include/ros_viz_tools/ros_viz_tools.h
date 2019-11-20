@@ -18,14 +18,7 @@ using visualization_msgs::Marker;
 using visualization_msgs::MarkerArray;
 using std_msgs::ColorRGBA;
 
-ColorRGBA newColorRGBA(uint8_t red, uint8_t green, uint8_t blue, double alpha = 1.0) {
-    std_msgs::ColorRGBA color;
-    color.r = red / 255.0;
-    color.g = green / 255.0;
-    color.b = blue / 255.0;
-    color.a = alpha;
-    return color;
-}
+ColorRGBA newColorRGBA(uint8_t red, uint8_t green, uint8_t blue, double alpha = 1.0);
 
 // pre-defined color
 const ColorRGBA WHITE      = newColorRGBA(255, 255, 255);

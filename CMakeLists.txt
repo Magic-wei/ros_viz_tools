@@ -5,7 +5,7 @@ project(ros_viz_tools)
 add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
-find_package(catkin REQUIRED COMPONENTS
+set(catkin_deps
   geometry_msgs
   roscpp
   std_msgs
@@ -13,11 +13,23 @@ find_package(catkin REQUIRED COMPONENTS
   tf2
 )
 
+find_package(catkin REQUIRED COMPONENTS
+  ${catkin_deps}
+)
+
+catkin_package(
+  INCLUDE_DIRS include
+  LIBRARIES ${PROJECT_NAME}
+  CATKIN_DEPENDS ${catkin_deps}
+)
+
+# include
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
 )
 
+# library
 add_library(${PROJECT_NAME}
   src/ros_viz_tools.cpp
 )

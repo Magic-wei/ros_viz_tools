@@ -2,6 +2,15 @@
 
 #include "ros_viz_tools/ros_viz_tools.h"
 
+ColorRGBA newColorRGBA(uint8_t red, uint8_t green, uint8_t blue, double alpha) {
+    std_msgs::ColorRGBA color;
+    color.r = red / 255.0;
+    color.g = green / 255.0;
+    color.b = blue / 255.0;
+    color.a = alpha;
+    return color;
+}
+
 RosVizTools::RosVizTools(const ros::NodeHandle &nh, const std::string &topic) :
                          nh(nh), topic(topic) {
     rviz_pub = this->nh.advertise<visualization_msgs::MarkerArray>(topic, 1);
