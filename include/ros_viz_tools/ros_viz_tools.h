@@ -108,6 +108,9 @@ public:
     static geometry_msgs::Pose defaultPose();
 
 private:
+    void initPublisher();
+
+private:
     ros::NodeHandle nh;
     ros::Publisher rviz_pub;
     std::string topic;

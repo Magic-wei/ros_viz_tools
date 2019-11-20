@@ -13,6 +13,10 @@ ColorRGBA newColorRGBA(uint8_t red, uint8_t green, uint8_t blue, double alpha) {
 
 RosVizTools::RosVizTools(const ros::NodeHandle &nh, const std::string &topic) :
                          nh(nh), topic(topic) {
+    initPublisher();
+}
+
+void RosVizTools::initPublisher(){
     rviz_pub = this->nh.advertise<visualization_msgs::MarkerArray>(topic, 1);
 }
 
