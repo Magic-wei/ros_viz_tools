@@ -112,6 +112,18 @@ int main( int argc, char** argv )
         visualization_msgs::Marker marker8 = RosVizTools::newCube(1.0, pose , ns, 0, WHITE, frame_id);
         markers.append(marker8);
 
+        // Arrow
+        ns = "arrow";
+        scale.x = 1.0;
+        scale.y = 0.1;
+        scale.z = 0.1;
+        pose.position.x = 0.0;
+        pose.position.y = 0.0;
+        pose.position.z = 0.0;
+        pose.orientation = tf2::toMsg(tf2::Quaternion(0 * M_PI / 180, 0 * M_PI / 180, 90 * M_PI / 180));
+        visualization_msgs::Marker marker9 = RosVizTools::newArrow(scale, pose , ns, 0, RED, frame_id);
+        markers.append(marker9);
+
         // publish
         markers.publish();
 
