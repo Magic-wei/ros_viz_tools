@@ -57,12 +57,14 @@ Include the header file in your codes,
 #include "ros_viz_tools/ros_viz_tools.h"
 ```
 
+### Markers
+
 Initialize a `RosVizTools` instance named  `markers`,
 
 ```c++
 ros::NodeHandle n;
 std::string topic = "demo_marker";
-RosVizTools markers(n, topic);
+ros_viz_tools::RosVizTools markers(n, topic);
 ```
 
 Create a new marker and append it to `markers`. Let's take cube list marker for example.
@@ -72,7 +74,7 @@ Create a new marker and append it to `markers`. Let's take cube list marker for 
 std::string ns = "cube_list";
 std::string frame_id = "ros_viz_tools";
 // intialize new marker
-visualization_msgs::Marker marker = RosVizTools::newCubeList(0.5, ns, 0, WHITE, frame_id);
+visualization_msgs::Marker marker = ros_viz_tools::RosVizTools::newCubeList(0.5, ns, 0, WHITE, frame_id);
 // modify marker, cube list, for example, also needs a position list.
 for (int i = 0; i < 10; ++i) {
     geometry_msgs::Point p;
@@ -80,7 +82,7 @@ for (int i = 0; i < 10; ++i) {
     p.y = pow(p.x, 2.0);
     p.z = 1.0;
     marker.points.push_back(p);
-    std_msgs::ColorRGBA color = newColorRGBA(randRGB(e), randRGB(e), randRGB(e));
+    std_msgs::ColorRGBA color = ros_viz_tools::newColorRGBA(randRGB(e), randRGB(e), randRGB(e));
     marker.colors.push_back(color);
 }
 // append to markers
@@ -100,6 +102,13 @@ markers.clear();
 ```
 
 You can see [demo_node.cpp](./src/demo_node.cpp) for better understanding of the usage for each marker type.
+
+### Colors
+
+To support colorful marker plotting, `ros_viz_tools` also defines functions and class for easier usage. Now there are two approaches supported for generating colors:
+
+* function `newColorRGBA` (also with some pre-defined colors in `color.h`) or
+* class `ColorMap` (See `demo_node.cpp` for examples)
 
 ## License
 
