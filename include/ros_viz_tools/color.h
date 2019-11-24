@@ -34,8 +34,7 @@ public:
     size_t operator()(double value);
     static size_t colorRGB2Hex(uint8_t red, uint8_t green, uint8_t blue);
     static void colorHex2RGB(const size_t &color_hex, uint8_t &red, uint8_t &green, uint8_t &blue);
-    static void
-    linspaceColorRGBinHex(size_t start, size_t end, size_t num, std::vector<size_t> &color_list);
+    static void linspaceColorRGBinHex(size_t start, size_t end, size_t num, std::vector<size_t> &color_list);
 
 private:
     static size_t colorInterpolation(size_t start, size_t end, double scale);
