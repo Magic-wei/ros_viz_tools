@@ -32,6 +32,7 @@ include_directories(
 # library
 add_library(${PROJECT_NAME}
   src/ros_viz_tools.cpp
+  src/color.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}

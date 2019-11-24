@@ -1,30 +1,21 @@
 // Copyright (C) 2019 Wei Wang (wei.wang.bit@outlook.com)
 
 #include "ros_viz_tools/ros_viz_tools.h"
-
-ColorRGBA newColorRGBA(uint8_t red, uint8_t green, uint8_t blue, double alpha) {
-    std_msgs::ColorRGBA color;
-    color.r = red / 255.0;
-    color.g = green / 255.0;
-    color.b = blue / 255.0;
-    color.a = alpha;
-    return color;
-}
-
+namespace ros_viz_tools {
 RosVizTools::RosVizTools(const ros::NodeHandle &nh, const std::string &topic) :
-                         nh(nh), topic(topic) {
+        nh(nh), topic(topic) {
     initPublisher();
 }
 
-void RosVizTools::initPublisher(){
+void RosVizTools::initPublisher() {
     rviz_pub = this->nh.advertise<visualization_msgs::MarkerArray>(topic, 1);
 }
 
-void RosVizTools::publish(){
+void RosVizTools::publish() {
     rviz_pub.publish(this->rviz_marker_array);
 }
 
-void RosVizTools::clear(){
+void RosVizTools::clear() {
     this->rviz_marker_array.markers.clear();
 }
 
@@ -38,7 +29,7 @@ Marker RosVizTools::newMaker(const geometry_msgs::Vector3 &scale,
                              const int32_t &id,
                              const ColorRGBA &color,
                              const std::string &frame_id,
-                             const int32_t &type){
+                             const int32_t &type) {
     Marker marker;
     // Set marker frame and timestamp.
     marker.header.frame_id = frame_id;
@@ -67,7 +58,7 @@ Marker RosVizTools::newCubeList(double scale,
                                 const std::string &ns,
                                 const int32_t &id,
                                 const ColorRGBA &color,
-                                const std::string &frame_id){
+                                const std::string &frame_id) {
     geometry_msgs::Vector3 vec_scale;
     vec_scale.x = scale;
     vec_scale.y = scale;
@@ -79,7 +70,7 @@ Marker RosVizTools::newSphereList(const double &scale,
                                   const std::string &ns,
                                   const int32_t &id,
                                   const ColorRGBA &color,
-                                  const std::string &frame_id){
+                                  const std::string &frame_id) {
     geometry_msgs::Vector3 vec_scale;
     vec_scale.x = scale;
     vec_scale.y = scale;
@@ -91,7 +82,7 @@ Marker RosVizTools::newLineStrip(const double &scale,
                                  const std::string &ns,
                                  const int32_t &id,
                                  const ColorRGBA &color,
-                                 const std::string &frame_id){
+                                 const std::string &frame_id) {
     geometry_msgs::Vector3 vec_scale;
     vec_scale.x = scale;
     vec_scale.y = 1.0;
@@ -103,7 +94,7 @@ Marker RosVizTools::newLineList(const double &scale,
                                 const std::string &ns,
                                 const int32_t &id,
                                 const ColorRGBA &color,
-                                const std::string &frame_id){
+                                const std::string &frame_id) {
     geometry_msgs::Vector3 vec_scale;
     vec_scale.x = scale;
     vec_scale.y = 1.0;
@@ -125,7 +116,7 @@ Marker RosVizTools::newCube(const double &scale,
                             const std::string &ns,
                             const int32_t &id,
                             const ColorRGBA &color,
-                            const std::string &frame_id){
+                            const std::string &frame_id) {
     geometry_msgs::Vector3 vec_scale;
     vec_scale.x = scale;
     vec_scale.y = scale;
@@ -138,7 +129,7 @@ Marker RosVizTools::newArrow(const geometry_msgs::Vector3 &scale,
                              const std::string &ns,
                              const int32_t &id,
                              const ColorRGBA &color,
-                             const std::string &frame_id){
+                             const std::string &frame_id) {
     return newMaker(scale, pose, ns, id, color, frame_id, visualization_msgs::Marker::ARROW);
 }
 
@@ -147,7 +138,7 @@ Marker RosVizTools::newText(const double &scale,
                             const std::string &ns,
                             const int32_t &id,
                             const ColorRGBA &color,
-                            const std::string &frame_id){
+                            const std::string &frame_id) {
     geometry_msgs::Vector3 vec_scale;
     vec_scale.x = 1.0;
     vec_scale.y = 1.0;
@@ -228,7 +219,7 @@ Marker RosVizTools::newFrame(const double &width,
     return frame;
 }
 
-geometry_msgs::Pose RosVizTools::defaultPose(){
+geometry_msgs::Pose RosVizTools::defaultPose() {
     geometry_msgs::Pose pose;
     pose.position.x = 0.0;
     pose.position.y = 0.0;
@@ -239,3 +230,4 @@ geometry_msgs::Pose RosVizTools::defaultPose(){
     pose.orientation.w = 1.0;
     return pose;
 }
+} // namespace ros_viz_tools
