@@ -1,6 +1,6 @@
 # ros_viz_tools
 
-This package is a visualization tool for easier Rviz marker plotting.
+This package is a visualization tool for easier Rviz [marker](http://wiki.ros.org/rviz/DisplayTypes/Marker) plotting.
 
 ## Dependencies
 
