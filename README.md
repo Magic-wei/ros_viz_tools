@@ -12,7 +12,7 @@ This package is a visualization tool for easier Rviz marker plotting.
 Build this package under your catkin workspace, run demo node and Rviz (frame: `ros_viz_tools`, topic: `demo_marker`) for a quick look:
 
 ```bash
-rosrun ros_viz_tools demo_node
+roslaunch ros_viz_tools demo_node.launch
 ```
 
 ![demo](./images/demo.png)
@@ -75,7 +75,7 @@ std::string ns = "cube_list";
 std::string frame_id = "ros_viz_tools";
 // intialize new marker
 visualization_msgs::Marker marker = ros_viz_tools::RosVizTools::newCubeList(0.5, ns, 0, WHITE, frame_id);
-// modify marker, cube list, for example, also needs a position list.
+// modify marker, cube list, for example, also needs a point list.
 for (int i = 0; i < 10; ++i) {
     geometry_msgs::Point p;
     p.x = i;
