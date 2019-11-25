@@ -13,7 +13,7 @@ ColorRGBA newColorRGBA(uint8_t red, uint8_t green, uint8_t blue, double alpha) {
 
 ColorMap::ColorMap(const std::vector<size_t> &color_list) {
     if (color_list.size() < 2) {
-        throw std::invalid_argument("size of color_list should be at least 2.");
+        throw std::invalid_argument("ColorMap: size of color_list should be at least 2.");
     }
     color_list_ = color_list;
     double value_step = 1.0 / color_list_.size();
@@ -26,7 +26,9 @@ ColorMap::ColorMap(const std::vector<size_t> &color_list) {
 
 size_t ColorMap::operator()(double value) {
     if (value < 0.0 || value > 1.0) {
-        throw std::invalid_argument("value should be between 0.0 and 1.0.");
+    	value = value < 0.0? 0.0:value;
+    	value = value > 1.0? 1.0:value;
+    	printf("ColorMap: value is out of range [0, 1], modified to %.1f.\n", value);
     }
 
     unsigned long index = 0;
