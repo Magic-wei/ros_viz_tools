@@ -32,12 +32,12 @@ int main( int argc, char** argv )
         pose.position.y = 1.0;
         pose.position.z = -1.0;
         pose.orientation = tf2::toMsg(tf2::Quaternion(0 * M_PI / 180, 45 * M_PI / 180, 45 * M_PI / 180));
-        marker_frame1 = RosVizTools::newFrame(0.1, 2.0, pose, ns, 0, ros_viz_tools::BLUE, frame_id);
+        marker_frame1 = RosVizTools::newFrame(0.1, 2.0, pose, ns, 0, frame_id);
         pose.position.x = -5.0;
         pose.position.y = 2.0;
         pose.position.z = -3.0;
         pose.orientation = tf2::toMsg(tf2::Quaternion(30 * M_PI / 180, 30 * M_PI / 180, 30 * M_PI / 180));
-        marker_frame2 = RosVizTools::newFrame(0.1, 1.0, pose, ns, 1, ros_viz_tools::GREEN, frame_id);
+        marker_frame2 = RosVizTools::newFrame(0.1, 1.0, pose, ns, 1, frame_id);
         markers.append(marker_frame1);
         markers.append(marker_frame2);
 

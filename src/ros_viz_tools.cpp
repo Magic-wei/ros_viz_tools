@@ -151,11 +151,10 @@ Marker RosVizTools::newFrame(const double &width,
                              const geometry_msgs::Pose &pose,
                              const std::string &ns,
                              const int32_t &id,
-                             const std_msgs::ColorRGBA &color,
                              const std::string &frame_id) {
 
     // line list marker
-    Marker frame = newLineList(width, ns, id, color, frame_id);
+    Marker frame = newLineList(width, ns, id, ros_viz_tools::WHITE, frame_id);
 
     // transform matrix - world origin to frame origin
     tf2::Transform trans_world_ori;

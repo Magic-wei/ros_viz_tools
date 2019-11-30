@@ -97,7 +97,6 @@ public:
                            const geometry_msgs::Pose &pose,
                            const std::string &ns,
                            const int32_t &id,
-                           const std_msgs::ColorRGBA &color,
                            const std::string &frame_id);
 
     static geometry_msgs::Pose defaultPose();
