@@ -78,6 +78,13 @@ public:
                           const ColorRGBA &color,
                           const std::string &frame_id);
 
+    static Marker newSphere(const double &scale,
+                            const geometry_msgs::Pose &pose,
+                            const std::string &ns,
+                            const int32_t &id,
+                            const ColorRGBA &color,
+                            const std::string &frame_id);
+
     static Marker newArrow(const geometry_msgs::Vector3 &scale,
                            const geometry_msgs::Pose &pose,
                            const std::string &ns,
