@@ -115,6 +115,15 @@ int main( int argc, char** argv )
         visualization_msgs::Marker marker_cube = RosVizTools::newCube(1.0, pose , ns, 0, ros_viz_tools::WHITE, frame_id);
         markers.append(marker_cube);
 
+        // Cube
+        ns = "sphere";
+        pose.position.x = -3.0;
+        pose.position.y = -3.0;
+        pose.position.z = -3.0;
+        pose.orientation = tf2::toMsg(tf2::Quaternion(0 * M_PI / 180, 45 * M_PI / 180, 45 * M_PI / 180));
+        visualization_msgs::Marker marker_sphere = RosVizTools::newSphere(0.5, pose , ns, 0, ros_viz_tools::RED, frame_id);
+        markers.append(marker_sphere);
+
         // Arrow
         ns = "arrow";
         scale.x = 1.0;

@@ -25,6 +25,7 @@ Currently support:
 - Line List
 - Cylinder
 - Cube
+- Sphere
 - Arrow
 - Text
 - Frame (Axes-type Pose)

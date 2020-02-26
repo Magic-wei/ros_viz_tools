@@ -124,6 +124,19 @@ Marker RosVizTools::newCube(const double &scale,
     return newMaker(vec_scale, pose, ns, id, color, frame_id, visualization_msgs::Marker::CUBE);
 }
 
+Marker RosVizTools::newSphere(const double &scale,
+                              const geometry_msgs::Pose &pose,
+                              const std::string &ns,
+                              const int32_t &id,
+                              const ColorRGBA &color,
+                              const std::string &frame_id) {
+    geometry_msgs::Vector3 vec_scale;
+    vec_scale.x = scale;
+    vec_scale.y = scale;
+    vec_scale.z = scale;
+    return newMaker(vec_scale, pose, ns, id, color, frame_id, visualization_msgs::Marker::SPHERE);
+}
+
 Marker RosVizTools::newArrow(const geometry_msgs::Vector3 &scale,
                              const geometry_msgs::Pose &pose,
                              const std::string &ns,
