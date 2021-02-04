@@ -11,6 +11,7 @@ namespace ros_viz_tools {
 using std_msgs::ColorRGBA;
 
 ColorRGBA newColorRGBA(uint8_t red, uint8_t green, uint8_t blue, double alpha = 1.0);
+ColorRGBA newColorRGBADouble(double red, double green, double blue, double alpha = 1.0);
 
 // pre-defined color
 const ColorRGBA WHITE      = newColorRGBA(255, 255, 255);

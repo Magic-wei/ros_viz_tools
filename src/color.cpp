@@ -8,6 +8,15 @@ ColorRGBA newColorRGBA(uint8_t red, uint8_t green, uint8_t blue, double alpha) {
     color.g = green / 255.0;
     color.b = blue / 255.0;
     color.a = alpha;
+    return newColorRGBADouble(red / 255.0, green / 255.0, blue / 255.0, alpha);
+}
+
+ColorRGBA newColorRGBADouble(double red, double green, double blue, double alpha) {
+    std_msgs::ColorRGBA color;
+    color.r = red;
+    color.g = green;
+    color.b = blue;
+    color.a = alpha;
     return color;
 }
 
