@@ -12,7 +12,16 @@ This package is a visualization tool for easier Rviz [marker](http://wiki.ros.or
 Build this package under your catkin workspace, run demo node and Rviz (frame: `ros_viz_tools`, topic: `demo_marker`) for a quick look:
 
 ```bash
+# Build
+cd <path_to_your_workspace>  # `cd ~/catkin_ws` for example
+catkin build ros_viz_tools
+source devel/setup.bash
+
+# Run regular demo
 roslaunch ros_viz_tools demo_node.launch
+
+# Run demo with lifetime setting
+roslaunch ros_viz_tools lifetime_demo_node.launch
 ```
 
 ![demo](./images/demo.png)
@@ -120,7 +129,7 @@ Then you can open Rviz and see the markers published in the frame `ros_viz_tools
 markers.clear();
 ```
 
-You can see [demo_node.cpp](./src/demo_node.cpp) for better understanding of the usage for each marker type.
+You can see [demo_node.cpp](./src/demo_node.cpp) and [lifetime_demo_node.cpp](./src/lifetime_demo_node.cpp) for better understanding of the usage for each marker type.
 
 ### Colors
 
