@@ -48,3 +48,13 @@ target_link_libraries(demo_node
   ${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )
+
+# lifetime demo
+add_executable(lifetime_demo_node
+        src/lifetime_demo_node.cpp
+        )
+
+target_link_libraries(lifetime_demo_node
+        ${PROJECT_NAME}
+        ${catkin_LIBRARIES}
+        )
