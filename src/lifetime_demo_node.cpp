@@ -190,6 +190,4 @@ int main( int argc, char** argv )
 
     // publish
     markers.publish();
-    markers.publish(); // need to publish twice to see the Markers in Rviz
-
 }
