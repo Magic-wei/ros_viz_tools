@@ -38,73 +38,84 @@ public:
                            const int32_t &id,
                            const ColorRGBA &color,
                            const std::string &frame_id,
-                           const int32_t &type);
+                           const int32_t &type,
+                           const double &lifetime = 0.0);
 
     static Marker newCubeList(double scale,
                               const std::string &ns,
                               const int32_t &id,
                               const ColorRGBA &color,
-                              const std::string &frame_id);
+                              const std::string &frame_id,
+                              const double &lifetime = 0.0);
 
     static Marker newSphereList(const double &scale,
                                 const std::string &ns,
                                 const int32_t &id,
                                 const ColorRGBA &color,
-                                const std::string &frame_id);
+                                const std::string &frame_id,
+                                const double &lifetime = 0.0);
 
     static Marker newLineStrip(const double &scale,
                                const std::string &ns,
                                const int32_t &id,
                                const ColorRGBA &color,
-                               const std::string &frame_id);
+                               const std::string &frame_id,
+                               const double &lifetime = 0.0);
 
     static Marker newLineList(const double &scale,
                               const std::string &ns,
                               const int32_t &id,
                               const ColorRGBA &color,
-                              const std::string &frame_id);
+                              const std::string &frame_id,
+                              const double &lifetime = 0.0);
 
     static Marker newCylinder(const geometry_msgs::Vector3 &scale,
                               const geometry_msgs::Pose &pose,
                               const std::string &ns,
                               const int32_t &id,
                               const ColorRGBA &color,
-                              const std::string &frame_id);
+                              const std::string &frame_id,
+                              const double &lifetime = 0.0);
 
     static Marker newCube(const double &scale,
                           const geometry_msgs::Pose &pose,
                           const std::string &ns,
                           const int32_t &id,
                           const ColorRGBA &color,
-                          const std::string &frame_id);
+                          const std::string &frame_id,
+                          const double &lifetime = 0.0);
 
     static Marker newSphere(const double &scale,
                             const geometry_msgs::Pose &pose,
                             const std::string &ns,
                             const int32_t &id,
                             const ColorRGBA &color,
-                            const std::string &frame_id);
+                            const std::string &frame_id,
+                            const double &lifetime = 0.0);
 
     static Marker newArrow(const geometry_msgs::Vector3 &scale,
                            const geometry_msgs::Pose &pose,
                            const std::string &ns,
                            const int32_t &id,
                            const ColorRGBA &color,
-                           const std::string &frame_id);
+                           const std::string &frame_id,
+                           const double &lifetime = 0.0);
 
     static Marker newText(const double &scale,
                           const geometry_msgs::Pose &pose,
                           const std::string &ns,
                           const int32_t &id,
                           const ColorRGBA &color,
-                          const std::string &frame_id);
+                          const std::string &frame_id,
+                          const double &lifetime = 0.0);
 
     static Marker newFrame(const double &width,
                            const double &length,
                            const geometry_msgs::Pose &pose,
                            const std::string &ns,
                            const int32_t &id,
-                           const std::string &frame_id);
+                           const std::string &frame_id,
+                           const double &lifetime = 0.0);
 
     static geometry_msgs::Pose defaultPose();
 

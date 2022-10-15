@@ -115,7 +115,7 @@ int main( int argc, char** argv )
         visualization_msgs::Marker marker_cube = RosVizTools::newCube(1.0, pose , ns, 0, ros_viz_tools::WHITE, frame_id);
         markers.append(marker_cube);
 
-        // Cube
+        // Sphere
         ns = "sphere";
         pose.position.x = -3.0;
         pose.position.y = -3.0;

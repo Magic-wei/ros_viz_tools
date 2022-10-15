@@ -29,7 +29,8 @@ Marker RosVizTools::newMaker(const geometry_msgs::Vector3 &scale,
                              const int32_t &id,
                              const ColorRGBA &color,
                              const std::string &frame_id,
-                             const int32_t &type) {
+                             const int32_t &type,
+                             const double &lifetime) {
     Marker marker;
     // Set marker frame and timestamp.
     marker.header.frame_id = frame_id;
@@ -51,6 +52,14 @@ Marker RosVizTools::newMaker(const geometry_msgs::Vector3 &scale,
     // Set the scale and color of the marker.
     marker.scale = scale;
     marker.color = color;
+
+    // Set lifetime
+    if (lifetime == 0.0) {
+        marker.lifetime = Marker::_lifetime_type(); // ros::Duration(), never to auto-delete
+    } else {
+        marker.lifetime = Marker::_lifetime_type(lifetime); // ros::Duration(t) with t in secs
+    }
+
     return marker;
 }
 
@@ -58,48 +67,52 @@ Marker RosVizTools::newCubeList(double scale,
                                 const std::string &ns,
                                 const int32_t &id,
                                 const ColorRGBA &color,
-                                const std::string &frame_id) {
+                                const std::string &frame_id,
+                                const double &lifetime) {
     geometry_msgs::Vector3 vec_scale;
     vec_scale.x = scale;
     vec_scale.y = scale;
     vec_scale.z = scale;
-    return newMaker(vec_scale, defaultPose(), ns, id, color, frame_id, visualization_msgs::Marker::CUBE_LIST);
+    return newMaker(vec_scale, defaultPose(), ns, id, color, frame_id, visualization_msgs::Marker::CUBE_LIST, lifetime);
 }
 
 Marker RosVizTools::newSphereList(const double &scale,
                                   const std::string &ns,
                                   const int32_t &id,
                                   const ColorRGBA &color,
-                                  const std::string &frame_id) {
+                                  const std::string &frame_id,
+                                  const double &lifetime) {
     geometry_msgs::Vector3 vec_scale;
     vec_scale.x = scale;
     vec_scale.y = scale;
     vec_scale.z = scale;
-    return newMaker(vec_scale, defaultPose(), ns, id, color, frame_id, visualization_msgs::Marker::SPHERE_LIST);
+    return newMaker(vec_scale, defaultPose(), ns, id, color, frame_id, visualization_msgs::Marker::SPHERE_LIST, lifetime);
 }
 
 Marker RosVizTools::newLineStrip(const double &scale,
                                  const std::string &ns,
                                  const int32_t &id,
                                  const ColorRGBA &color,
-                                 const std::string &frame_id) {
+                                 const std::string &frame_id,
+                                 const double &lifetime) {
     geometry_msgs::Vector3 vec_scale;
     vec_scale.x = scale;
     vec_scale.y = 1.0;
     vec_scale.z = 1.0;
-    return newMaker(vec_scale, defaultPose(), ns, id, color, frame_id, visualization_msgs::Marker::LINE_STRIP);
+    return newMaker(vec_scale, defaultPose(), ns, id, color, frame_id, visualization_msgs::Marker::LINE_STRIP, lifetime);
 }
 
 Marker RosVizTools::newLineList(const double &scale,
                                 const std::string &ns,
                                 const int32_t &id,
                                 const ColorRGBA &color,
-                                const std::string &frame_id) {
+                                const std::string &frame_id,
+                                const double &lifetime) {
     geometry_msgs::Vector3 vec_scale;
     vec_scale.x = scale;
     vec_scale.y = 1.0;
     vec_scale.z = 1.0;
-    return newMaker(vec_scale, defaultPose(), ns, id, color, frame_id, visualization_msgs::Marker::LINE_LIST);
+    return newMaker(vec_scale, defaultPose(), ns, id, color, frame_id, visualization_msgs::Marker::LINE_LIST, lifetime);
 }
 
 Marker RosVizTools::newCylinder(const geometry_msgs::Vector3 &scale,
@@ -107,8 +120,9 @@ Marker RosVizTools::newCylinder(const geometry_msgs::Vector3 &scale,
                                 const std::string &ns,
                                 const int32_t &id,
                                 const ColorRGBA &color,
-                                const std::string &frame_id) {
-    return newMaker(scale, pose, ns, id, color, frame_id, visualization_msgs::Marker::CYLINDER);
+                                const std::string &frame_id,
+                                const double &lifetime) {
+    return newMaker(scale, pose, ns, id, color, frame_id, visualization_msgs::Marker::CYLINDER, lifetime);
 }
 
 Marker RosVizTools::newCube(const double &scale,
@@ -116,12 +130,13 @@ Marker RosVizTools::newCube(const double &scale,
                             const std::string &ns,
                             const int32_t &id,
                             const ColorRGBA &color,
-                            const std::string &frame_id) {
+                            const std::string &frame_id,
+                            const double &lifetime) {
     geometry_msgs::Vector3 vec_scale;
     vec_scale.x = scale;
     vec_scale.y = scale;
     vec_scale.z = scale;
-    return newMaker(vec_scale, pose, ns, id, color, frame_id, visualization_msgs::Marker::CUBE);
+    return newMaker(vec_scale, pose, ns, id, color, frame_id, visualization_msgs::Marker::CUBE, lifetime);
 }
 
 Marker RosVizTools::newSphere(const double &scale,
@@ -129,12 +144,13 @@ Marker RosVizTools::newSphere(const double &scale,
                               const std::string &ns,
                               const int32_t &id,
                               const ColorRGBA &color,
-                              const std::string &frame_id) {
+                              const std::string &frame_id,
+                              const double &lifetime) {
     geometry_msgs::Vector3 vec_scale;
     vec_scale.x = scale;
     vec_scale.y = scale;
     vec_scale.z = scale;
-    return newMaker(vec_scale, pose, ns, id, color, frame_id, visualization_msgs::Marker::SPHERE);
+    return newMaker(vec_scale, pose, ns, id, color, frame_id, visualization_msgs::Marker::SPHERE, lifetime);
 }
 
 Marker RosVizTools::newArrow(const geometry_msgs::Vector3 &scale,
@@ -142,8 +158,9 @@ Marker RosVizTools::newArrow(const geometry_msgs::Vector3 &scale,
                              const std::string &ns,
                              const int32_t &id,
                              const ColorRGBA &color,
-                             const std::string &frame_id) {
-    return newMaker(scale, pose, ns, id, color, frame_id, visualization_msgs::Marker::ARROW);
+                             const std::string &frame_id,
+                             const double &lifetime) {
+    return newMaker(scale, pose, ns, id, color, frame_id, visualization_msgs::Marker::ARROW, lifetime);
 }
 
 Marker RosVizTools::newText(const double &scale,
@@ -151,12 +168,13 @@ Marker RosVizTools::newText(const double &scale,
                             const std::string &ns,
                             const int32_t &id,
                             const ColorRGBA &color,
-                            const std::string &frame_id) {
+                            const std::string &frame_id,
+                            const double &lifetime) {
     geometry_msgs::Vector3 vec_scale;
     vec_scale.x = 1.0;
     vec_scale.y = 1.0;
     vec_scale.z = scale;
-    return newMaker(vec_scale, pose, ns, id, color, frame_id, visualization_msgs::Marker::TEXT_VIEW_FACING);
+    return newMaker(vec_scale, pose, ns, id, color, frame_id, visualization_msgs::Marker::TEXT_VIEW_FACING, lifetime);
 }
 
 Marker RosVizTools::newFrame(const double &width,
@@ -164,10 +182,11 @@ Marker RosVizTools::newFrame(const double &width,
                              const geometry_msgs::Pose &pose,
                              const std::string &ns,
                              const int32_t &id,
-                             const std::string &frame_id) {
+                             const std::string &frame_id,
+                             const double &lifetime) {
 
     // line list marker
-    Marker frame = newLineList(width, ns, id, ros_viz_tools::WHITE, frame_id);
+    Marker frame = newLineList(width, ns, id, ros_viz_tools::WHITE, frame_id, lifetime);
 
     // transform matrix - world origin to frame origin
     tf2::Transform trans_world_ori;
