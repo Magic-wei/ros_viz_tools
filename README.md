@@ -12,8 +12,14 @@ This package is a visualization tool for easier Rviz [marker](http://wiki.ros.or
 Build this package under your catkin workspace, run demo node and Rviz (frame: `ros_viz_tools`, topic: `demo_marker`) for a quick look:
 
 ```bash
-# Build
+# Clone this repo
 cd <path_to_your_workspace>  # `cd ~/catkin_ws` for example
+mkdir src && cd src
+git clone git@github.com:Magic-wei/ros_viz_tools.git
+# or - git clone https://github.com/Magic-wei/ros_viz_tools.git
+
+# Build
+cd <path_to_your_workspace>
 catkin build ros_viz_tools
 source devel/setup.bash
 
@@ -21,7 +27,10 @@ source devel/setup.bash
 roslaunch ros_viz_tools demo_node.launch
 
 # Run demo with lifetime setting
-roslaunch ros_viz_tools lifetime_demo_node.launch
+# - each marker will be auto-deleted once its lifetime is reached
+roslaunch ros_viz_tools lifetime_demo.launch
+# - three text markers are used to show how lifetime reset works
+roslaunch ros_viz_tools lifetime_reset_demo.launch
 ```
 
 ![demo](./images/demo.png)
@@ -67,7 +76,7 @@ Include the header file in your codes,
 #include "ros_viz_tools/ros_viz_tools.h"
 ```
 
-### Markers
+### Create and Publish Markers
 
 Initialize a `RosVizTools` instance named  `markers`,
 
@@ -129,7 +138,47 @@ Then you can open Rviz and see the markers published in the frame `ros_viz_tools
 markers.clear();
 ```
 
-You can see [demo_node.cpp](./src/demo_node.cpp) and [lifetime_demo_node.cpp](./src/lifetime_demo_node.cpp) for better understanding of the usage for each marker type.
+Of course you can also publish your markers via your own publishers. For example, 
+
+```cpp
+// Publish single marker
+ros::NodeHandle nh;
+ros::Publisher publisher = nh.advertise<visualization_msgs::Marker>("your_topic_name", 1);
+publisher.publish(marker);
+```
+
+You can see the following demo nodes for a better understanding of the usage for each marker type.
+
+- [demo_node.cpp](./src/demo_node.cpp) - Create and publish all markers in a marker array, regular usage for most cases. This source file also contains example usage of colormap.
+- [lifetime_demo.cpp](./src/lifetime_demo.cpp) - Publish all markers once and each marker will be deleted automatically once its lifetime is reached, except for the markers with the parameter `lifetime=0.0` which won't be auto-deleted, see [Lifetime](#Lifetime) section below for more details.
+- [lifetime_reset_demo.cpp](./src/lifetime_reset_demo.cpp) - Three text markers are used to demonstrate how lifetime works for individual marker. This demo use three publishers for message type `visualization_msgs::Marker` to control these three markers instead of the built-in publisher in `ros_viz_tools::RosVizTools` class.
+
+### Lifetime
+
+The `lifetime` field of a marker specifies how long this marker should stick around before being automatically deleted. A value of `ros::Duration()` means never to auto-delete.
+
+In class `ros_viz_tools::RosVizTools`, we use a double type parameter `lifetime` as the last parameter for all marker creator functions (`newMaker`, `newCubeList`, `newArrow`, etc.), which by default is 0.0 meaning never to auto-delete and any value greater than 0.0 will be treated as the lifetime in seconds of the marker.
+
+```cpp
+Marker RosVizTools::newMaker(const geometry_msgs::Vector3 &scale,
+                             const geometry_msgs::Pose &pose,
+                             const std::string &ns,
+                             const int32_t &id,
+                             const ColorRGBA &color,
+                             const std::string &frame_id,
+                             const int32_t &type,
+                             const double &lifetime = 0.0) {
+    // ...
+    // Set lifetime
+    if (lifetime == 0.0) {
+        marker.lifetime = Marker::_lifetime_type(); // i.e. ros::Duration(), never to auto-delete
+    } else {
+        marker.lifetime = Marker::_lifetime_type(lifetime); // i.e. ros::Duration(t) with t in secs
+    }
+}
+```
+
+Note that if a new marker message with the same namespace and id is received before the lifetime has been reached, the lifetime will be reset to the value in the new marker message.
 
 ### Colors
 

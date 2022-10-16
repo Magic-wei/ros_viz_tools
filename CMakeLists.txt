@@ -50,11 +50,20 @@ target_link_libraries(demo_node
 )
 
 # lifetime demo
-add_executable(lifetime_demo_node
-        src/lifetime_demo_node.cpp
+add_executable(lifetime_demo
+        src/lifetime_demo.cpp
         )
 
-target_link_libraries(lifetime_demo_node
+target_link_libraries(lifetime_demo
+        ${PROJECT_NAME}
+        ${catkin_LIBRARIES}
+        )
+
+add_executable(lifetime_reset_demo
+        src/lifetime_reset_demo.cpp
+        )
+
+target_link_libraries(lifetime_reset_demo
         ${PROJECT_NAME}
         ${catkin_LIBRARIES}
         )

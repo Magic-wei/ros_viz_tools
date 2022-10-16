@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-    <node pkg="ros_viz_tools" type="lifetime_demo_node" name="lifetime_demo_node" output="screen">  </node>
+    <node pkg="ros_viz_tools" type="lifetime_demo" name="lifetime_demo" output="screen">  </node>
 
     <node name="rviz" pkg="rviz" type="rviz"  args="-d $(find ros_viz_tools)/config/demo_node.rviz"> </node>
 </launch>

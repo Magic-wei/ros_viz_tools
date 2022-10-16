@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <node pkg="ros_viz_tools" type="lifetime_reset_demo" name="lifetime_reset_demo" output="screen">  </node>
+
+    <node name="rviz" pkg="rviz" type="rviz"  args="-d $(find ros_viz_tools)/config/lifetime_reset_demo.rviz"> </node>
+</launch>

@@ -11,8 +11,8 @@ using ros_viz_tools::ColorMap;
 
 int main( int argc, char** argv )
 {
-    ROS_INFO("demo_node starts.");
-    ros::init(argc, argv, "demo_node");
+    ROS_INFO("lifetime_demo starts.");
+    ros::init(argc, argv, "lifetime_demo");
     ros::NodeHandle n;
     std::string topic = "demo_marker";
     ros_viz_tools::RosVizTools markers(n, topic);
@@ -22,6 +22,8 @@ int main( int argc, char** argv )
     double lifetime;
 
     ros::Rate r(1);
+
+    // Publish once need to run ros::ok() and ros::Rate.sleep() first
     if (!ros::ok()) return 1;
     r.sleep();
 
